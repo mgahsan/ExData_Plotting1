@@ -17,9 +17,9 @@ if(!file.exists("exdata-data-household_power_consumption.zip")) {
 
 if(!exists("hpcdata")) {
     hpcdata <- subset(read.table("household_power_consumption.txt", 
-                                 header = T, sep =";", na.strings = "?", stringsAsFactors = F), 
+                                 header=T, sep =";", na.strings ="?", stringsAsFactors=F), 
                       read.table("household_power_consumption.txt", 
-                                 header = T, sep =";", na.strings = "?", stringsAsFactors = F)$Date %in% c("1/2/2007", "2/2/2007"))
+                                 header=T, sep =";", na.strings ="?", stringsAsFactors=F)$Date %in% c("1/2/2007", "2/2/2007"))
 }
 
 ## Setting the Date and Time Variables: Format "%F %T" is equivalent of "%Y-%m-%d %H:%M:%S". 
@@ -50,19 +50,19 @@ par(mfcol = c(2, 2))
 with(hpcdata, {
         
     ## location (col1, row1)
-    plot(Date_Time, Global_active_power, type="l", xlab = "", ylab ="Global Active Power")
+    plot(Date_Time, Global_active_power, type="l", xlab = "", ylab ="Global Active Power", cex = 0.3)
         
     ## location (col1, row2)
-    plot(Date_Time, Sub_metering_1, type = "l", xlab = "", ylab = "Energy Sub-metering")
+    plot(Date_Time, Sub_metering_1, type = "l", xlab = "", ylab = "Energy Sub-metering", cex = 0.3)
     lines(Date_Time, Sub_metering_2, col= "Red")
     lines(Date_Time, Sub_metering_3, col= "Blue")
     legend("topright", col = c("black", "red", "blue"), c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), lwd=1.5, bty="n")
         
     ## location (col2, row1)
-    plot(Date_Time, Voltage, type = "l", xlab = "datetime", ylab = "Voltage")
+    plot(Date_Time, Voltage, type = "l", xlab = "datetime", ylab = "Voltage", cex = 0.3)
         
     ## location (col2, row2)
-    plot(Date_Time, Global_reactive_power, type="l", xlab = "datetime", ylab = "Global Reactive Power")
+    plot(Date_Time, Global_reactive_power, type="l", xlab = "datetime", ylab = "Global Reactive Power", cex = 0.3)
 })
 
 dev.off()

@@ -16,9 +16,9 @@ if(!file.exists("exdata-data-household_power_consumption.zip")) {
 
 if(!exists("hpcdata")) {
     hpcdata <- subset(read.table("household_power_consumption.txt", 
-                                     header = T, sep =";", na.strings = "?", stringsAsFactors = F), 
+                                     header=T, sep =";", na.strings ="?", stringsAsFactors=F), 
                       read.table("household_power_consumption.txt", 
-                                 header = T, sep =";", na.strings = "?", stringsAsFactors = F)$Date %in% c("1/2/2007", "2/2/2007"))
+                                 header=T, sep =";", na.strings ="?", stringsAsFactors=F)$Date %in% c("1/2/2007", "2/2/2007"))
 }
 
 ## Setting the Date and Time Variables: Format "%F %T" is equivalent of "%Y-%m-%d %H:%M:%S". 
@@ -46,7 +46,7 @@ with(hpcdata, {
     plot(Date_Time, Sub_metering_1, type = "l", xlab = "", ylab = "Energy Sub-metering")
     lines(Date_Time, Sub_metering_2, col= "Red")
     lines(Date_Time, Sub_metering_3, col= "Blue")
-    legend("topright", col = c("black", "red", "blue"), c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), lwd = 1.5)
+    legend("topright", col = c("black", "red", "blue"), c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), lwd=1.5)
 })
 
 dev.off()
