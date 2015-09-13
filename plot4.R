@@ -39,30 +39,30 @@ hpcdata$Date_Time <- strptime(paste(hpcdata$Date, hpcdata$Time, sep=" "), format
 ## sample png files were created on Mac operating system probably by using the "quarts"
 ## graphical device. The closest possible option to match them on windows platform is to
 ## use 'cairo' or 'cairo-png' type. Playing with resolution ends up changing the sizes of 
-## the plots. However, specifically for plot4 resolution has been set to 62 (8 points
+## the plots. However, specifically for plot4 resolution has been set to 68 (4 points
 ## lower) than the default. The 'antialias' argument was used to produce clarity of fonts
 ## and graphs.
 
-png("plot4.png", width = 480, height = 480, unit = "px", res = 64, bg = "transparent", type = "cairo", antialias = "subpixel")
+png("plot4.png", width = 480, height = 480, unit = "px", res = 68, bg = "transparent", type = "cairo", antialias = "subpixel")
 
 par(mfcol = c(2, 2)) 
 
 with(hpcdata, {
         
-        ## location (col1, row1)
-        plot(Date_Time, Global_active_power, type="l", xlab = "", ylab ="Global Active Power")
+    ## location (col1, row1)
+    plot(Date_Time, Global_active_power, type="l", xlab = "", ylab ="Global Active Power")
         
-        ## location (col1, row2)
-        plot(Date_Time, Sub_metering_1, type = "l", xlab = "", ylab = "Energy Sub-metering")
-        lines(Date_Time, Sub_metering_2, col= "Red")
-        lines(Date_Time, Sub_metering_3, col= "Blue")
-        legend("topright", col = c("black", "red", "blue"), c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), lwd = 1.5, bty = "n")
+    ## location (col1, row2)
+    plot(Date_Time, Sub_metering_1, type = "l", xlab = "", ylab = "Energy Sub-metering")
+    lines(Date_Time, Sub_metering_2, col= "Red")
+    lines(Date_Time, Sub_metering_3, col= "Blue")
+    legend("topright", col = c("black", "red", "blue"), c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), lwd=1.5, bty="n")
         
-        ## location (col2, row1)
-        plot(Date_Time, Voltage, type = "l", xlab = "datetime", ylab = "Voltage")
+    ## location (col2, row1)
+    plot(Date_Time, Voltage, type = "l", xlab = "datetime", ylab = "Voltage")
         
-        ## location (col2, row2)
-        plot(Date_Time, Global_reactive_power, type="l", xlab = "datetime", ylab = "Global Reactive Power")
+    ## location (col2, row2)
+    plot(Date_Time, Global_reactive_power, type="l", xlab = "datetime", ylab = "Global Reactive Power")
 })
 
 dev.off()
