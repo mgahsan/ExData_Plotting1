@@ -1,5 +1,8 @@
-## Downloading the file directly from web server and unzipping: The if structure 
-## saves time for consecutive uses of the script.
+## Note: The script will run on the working directory of the user. Any new file downloaded,
+## manipulated or created will be saved on the same location.
+
+## Downloading the file directly from web and unzipping: The if structure saves time on 
+## consecutive uses of the script.
 
 if(!file.exists("exdata-data-household_power_consumption.zip")) {
         download.file("https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip", 
@@ -12,8 +15,10 @@ if(!file.exists("exdata-data-household_power_consumption.zip")) {
 ## package independent for this project. The if structure saves time when used multiple times.
 
 if(!exists("hpcdata")) {
-        hpcdata <- subset(read.table("household_power_consumption.txt", header = T, sep =";", na.strings = "?", stringsAsFactors = F), 
-                          read.table("household_power_consumption.txt", header = T, sep =";", na.strings = "?", stringsAsFactors = F)$Date %in% c("1/2/2007", "2/2/2007"))
+        hpcdata <- subset(read.table("household_power_consumption.txt", 
+                                     header = T, sep =";", na.strings = "?", stringsAsFactors = F), 
+                          read.table("household_power_consumption.txt", 
+                                     header = T, sep =";", na.strings = "?", stringsAsFactors = F)$Date %in% c("1/2/2007", "2/2/2007"))
 }
 
 ## Setting the Date and Time Variables: Format "%F %T" is equivalent of "%Y-%m-%d %H:%M:%S". 
@@ -25,7 +30,14 @@ hpcdata$Date_Time <- strptime(paste(hpcdata$Date, hpcdata$Time, sep=" "), format
 ## Plotting Global Active Power over 2 consecutive days: Background for the image has been kept
 ## transparent to math sample images on the GitHub repository.
 
-png("plot2.png", width = 480, height = 480, bg = "transparent")
+## Minor structural differences might be observed because of platform differences. The
+## sample png files were created on Mac operating system probably by using the "quarts"
+## graphical device. The closest possible option to match them on windows platform is to
+## use 'cairo' or 'cairo-png' type. Playing with resolution ends up changing the sizes of 
+## the plots. It was avoided here. The 'antialias' argument was used to produce clarity 
+## of fonts and graphs.
+
+png("plot2.png", width = 480, height = 480, unit = "px", res = 72, bg = "transparent", type = "cairo", antialias = "subpixel")
 
 plot(hpcdata$Date_Time, hpcdata$Global_active_power, type = "l", xlab = "", ylab="Global Active Power (kilowatts)")
 
